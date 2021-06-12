@@ -1,5 +1,0 @@
-D:/GitHub/LearnQT/build-Counter2-Desktop_Qt_6_0_1_MSVC2019_64bit-Debug/CMakeFiles/Counter2.dir
-D:/GitHub/LearnQT/build-Counter2-Desktop_Qt_6_0_1_MSVC2019_64bit-Debug/CMakeFiles/edit_cache.dir
-D:/GitHub/LearnQT/build-Counter2-Desktop_Qt_6_0_1_MSVC2019_64bit-Debug/CMakeFiles/rebuild_cache.dir
-D:/GitHub/LearnQT/build-Counter2-Desktop_Qt_6_0_1_MSVC2019_64bit-Debug/CMakeFiles/Counter2_autogen_timestamp_deps.dir
-D:/GitHub/LearnQT/build-Counter2-Desktop_Qt_6_0_1_MSVC2019_64bit-Debug/CMakeFiles/Counter2_autogen.dir
