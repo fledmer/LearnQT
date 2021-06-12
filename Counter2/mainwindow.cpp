@@ -19,6 +19,7 @@ MainWindow::MainWindow(QWidget *parent)
     actionMenu = menuBar()->addMenu("Action");
     actionMenu->addAction(plusAction);
     actionMenu->addAction(minusAction);
+    actionMenu->addSeparator();
     actionMenu->addAction(exitAction);
 
     QGridLayout *buttonGrid = new QGridLayout(this);

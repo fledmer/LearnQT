@@ -20,7 +20,7 @@ MainWindow::MainWindow(QWidget *parent)
     QGridLayout *buttonGrid = new QGridLayout(this);
     buttonGrid->addWidget(plusButton,0,0);
     buttonGrid->addWidget(minusButton,0,1);
-    buttonGrid->addWidget(LCDcouter,1,1);
+    buttonGrid->addWidget(LCDcouter,1,0,1,2);
 
 
     connect(plusButton,&QPushButton::clicked,this,&MainWindow::plusSlot);
