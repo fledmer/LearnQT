@@ -1,0 +1,6 @@
+# ninja log v5
+1	138	645234622	Counter2_autogen/timestamp	fe34d357de558466
+138	1629	645234624	CMakeFiles/Counter2.dir/Counter2_autogen/mocs_compilation.cpp.obj	107a47e1b6eb1e64
+139	1745	645234624	CMakeFiles/Counter2.dir/main.cpp.obj	42b10bf90392d723
+139	1755	645234624	CMakeFiles/Counter2.dir/mainwindow.cpp.obj	5be4d4a0f961bb7d
+1755	2100	645234624	Counter2.exe	a155a8c0a22b359e
