@@ -3,6 +3,7 @@
 
 #include <QMainWindow>
 #include <candyworld.h>
+#include <QLabel>
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -18,8 +19,7 @@ public:
     void ReDraw();
 
 private:
-    void keyPressEvent(QKeyEvent *event);
-    QPixmap pxm;
+    QLabel *candyEatLabel;
     CandyWorld *game;
     QVector<QVector<int>> *world;
     QVector<QVector<QWidget*>> *graphics;
@@ -27,7 +27,10 @@ private:
     QPalette *playerPalette;
     QPalette *candyPalette;
     QPalette *voidPalette;
+    QPalette *wallPalette;
     int w_count;
     int h_count;
+
+    void keyPressEvent(QKeyEvent *event);
 };
 #endif // MAINWINDOW_H

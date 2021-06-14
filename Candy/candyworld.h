@@ -6,9 +6,11 @@ class CandyWorld
 {
 public:
     QVector<QVector<int>> *world;
+    int candyEatCount;
     CandyWorld(int w_count, int h_count);
     void Update(int direction);
 private:
+    QVector<QVector<int>>* GenerateMaze(int height,int width);
     int h_count,w_count;
     void Roll();
     QPoint *playerPosition;
