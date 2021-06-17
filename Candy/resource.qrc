@@ -1,0 +1,9 @@
+<RCC>
+    <qresource prefix="/resurces">
+        <file>image/candy.png</file>
+        <file>image/player.png</file>
+        <file>image/wall.png</file>
+        <file>image/world.png</file>
+    </qresource>
+    <qresource prefix="/new/prefix1"/>
+</RCC>

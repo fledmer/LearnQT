@@ -13,8 +13,13 @@ CandyWorld::CandyWorld(int w_count, int h_count):candyEatCount(0)
     for(int x = 0; x < h_count; x++)
         world->push_back(QVector<int>(w_count));
     (*world)[1][1] = 1; //Player
-    (*world)[0][1] = 2; //Candy
-    qDebug() << *world;
+    while(*playerPosition == *candyPosition ||
+          (*world)[candyPosition->y()][candyPosition->x()] == -1)
+    {
+        candyPosition->setX(rand()%w_count);
+        candyPosition->setY(rand()%h_count);
+    }
+    (*world)[candyPosition->y()][candyPosition->x()] = 2;
 }
 
 void CandyWorld::Update(int direction)
@@ -23,13 +28,13 @@ void CandyWorld::Update(int direction)
     auto oldPlayerPosition = *playerPosition;
     (*world)[playerPosition->y()][playerPosition->x()] = 0;
     (*world)[candyPosition->y()][candyPosition->x()] = 0;
-    if(direction == 0 & playerPosition->x() != 0)
+    if(direction == 0)
         playerPosition->setX(playerPosition->x()-1);
-    else if(direction == 1 & playerPosition->x() != w_count-1)
+    else if(direction == 1)
         playerPosition->setX(playerPosition->x()+1);
-    else if(direction == 2 & playerPosition->y() != 0)
+    else if(direction == 2)
         playerPosition->setY(playerPosition->y()-1);
-    else if(direction == 3 & playerPosition->y() != h_count-1)
+    else if(direction == 3)
         playerPosition->setY(playerPosition->y()+1);
 
     if((*world)[playerPosition->y()][playerPosition->x()] == -1){
@@ -45,8 +50,6 @@ void CandyWorld::Update(int direction)
         candyEat = true;
     }
     if(candyEat)candyEatCount++;
-    qDebug() << "PLAYER: " << *playerPosition;
-    qDebug() << "CANDY: " << *candyPosition;
     (*world)[playerPosition->y()][playerPosition->x()] = 1;
     (*world)[candyPosition->y()][candyPosition->x()] = 2;
 }
@@ -54,16 +57,14 @@ void CandyWorld::Update(int direction)
 QVector<QVector<int>>* CandyWorld::GenerateMaze(int height, int width)
 {
     {
-        height++;
-        width++;
-        const unsigned output_height = height*2+1;
-        const unsigned output_width = width*2+1;
+        int output_height = height*2+1;
+        int output_width = width*2+1;
         auto maze = new QVector<QVector<int>>();
-        for (unsigned i = 0; i < output_height; ++i)
+        for (int i = 0; i < output_height; ++i)
         {
             QVector<int> row;
             row.reserve(output_width);
-            for (unsigned j = 0; j < output_width; ++j)
+            for (int j = 0; j < output_width; ++j)
                 if ((i % 2 == 1) && (j % 2 == 1))
                     row.push_back(0);
                 else
@@ -100,7 +101,7 @@ QVector<QVector<int>>* CandyWorld::GenerateMaze(int height, int width)
                 }
             }
 
-            for (unsigned j = 0; j < width; ++j)
+            for (int j = 0; j < width; ++j)
             {
                 const auto bottom_wall = dist(mt);
                 unsigned int count_current_set = 0;
@@ -130,7 +131,13 @@ QVector<QVector<int>>* CandyWorld::GenerateMaze(int height, int width)
             if (row_set[j] != row_set[j + 1])
                 (*maze)[output_height - 2][j * 2 + 2] = 0;
         }
-        qDebug() << *maze;
         return maze;
     }
+}
+
+CandyWorld::~CandyWorld()
+{
+    delete world;
+    delete playerPosition;
+    delete candyPosition;
 }

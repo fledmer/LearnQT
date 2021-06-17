@@ -1,9 +1,6 @@
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
-
 #include <QMainWindow>
-#include <candyworld.h>
-#include <QLabel>
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -16,21 +13,13 @@ class MainWindow : public QMainWindow
 public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
-    void ReDraw();
+    void Play();
+
+
+private slots:
+    void on_pushButton_pressed();
 
 private:
-    QLabel *candyEatLabel;
-    CandyWorld *game;
-    QVector<QVector<int>> *world;
-    QVector<QVector<QWidget*>> *graphics;
     Ui::MainWindow *ui;
-    QPalette *playerPalette;
-    QPalette *candyPalette;
-    QPalette *voidPalette;
-    QPalette *wallPalette;
-    int w_count;
-    int h_count;
-
-    void keyPressEvent(QKeyEvent *event);
 };
 #endif // MAINWINDOW_H
