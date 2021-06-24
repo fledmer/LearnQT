@@ -9,7 +9,9 @@
 #include "QLabel"
 #include "QGroupBox"
 #include "QLineEdit"
-
+#include "QTextEdit"
+#include "MyHighlighter.h"
+#include "QPushButton"
 
 Form::Form(QWidget *parent) : QWidget(parent)
 {
@@ -136,10 +138,33 @@ Form::Form(QWidget *parent) : QWidget(parent)
     connect(slider, SIGNAL(valueChanged(int)),this,SLOT(getNum(int)));
     connect(this, SIGNAL(setText(QString)),lineEdit,SLOT(setText(QString)));
 
+    QLabel *textEditLabel = new QLabel("Редактор &текста");
+    textEditLabel->setFont(baseLabelFont);
+    QTextEdit *textEdit = new QTextEdit();
+    QPalette *palette = new QPalette();
+    palette->setColor(QPalette::Base,Qt::darkBlue);
+    palette->setColor(QPalette::Text,Qt::yellow);
+    textEdit->setPalette(*palette);
+    textEditLabel->setBuddy(textEdit);
+    textEdit->setFrameStyle(QFrame::Sunken | QFrame::StyledPanel);
+    new MyHighLighter(textEdit->document());
+    QHBoxLayout *horizontalLayout;
+    {
+        QPushButton *minusButton = new QPushButton("-");
+        connect(minusButton,SIGNAL(pressed()),textEdit,SLOT(zoomOut()));
+        QPushButton *plusButton = new QPushButton("+");
+        connect(plusButton,SIGNAL(pressed()),textEdit,SLOT(zoomIn()));
+        horizontalLayout = new QHBoxLayout();
+        horizontalLayout->addWidget(minusButton);
+        horizontalLayout->addWidget(plusButton);
+    }
+
     QVBoxLayout *verticalLayout = new QVBoxLayout;
     verticalLayout->addWidget(lineEditLabel);
     verticalLayout->addWidget(lineEdit);
-    verticalLayout->setSpacing(15);
+    verticalLayout->addWidget(textEditLabel);
+    verticalLayout->addWidget(textEdit);
+    verticalLayout->addLayout(horizontalLayout);
     groupBox->setLayout(verticalLayout);
     }
 }

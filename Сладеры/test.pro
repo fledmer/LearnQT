@@ -13,6 +13,7 @@ SOURCES += \
     main.cpp
 
 HEADERS += \
+    MyHighlighter.h \
     form.h
 
 # Default rules for deployment.
